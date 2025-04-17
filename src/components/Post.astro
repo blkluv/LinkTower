@@ -4,12 +4,12 @@ import { formatDate } from "@/lib/util";
 const { post } = Astro.props;
 ---
 
-<li class="overflow-hidden rounded-lg shadow-md bg-white dark:bg-darkModeBackground hover:bg-lightModeIconLinkBackgroundHover dark:hover:bg-darkModeIconLinkBackgroundHover ring-2 ring-lightModeIconLinkOutline dark:ring-darkModeIconLinkOutline hover:ring-lightModeIconLinkOutlineHover dark:hover:ring-darkModeIconLinkOutlineHover transition-colors">
+<li class="overflow-hidden rounded-lg shadow-md bg-lightModePostBackground dark:bg-darkModePostBackground hover:bg-lightModePostBackgroundHover dark:hover:bg-darkModePostBackgroundHover ring-2 ring-lightModePostOutline dark:ring-darkModePostOutline hover:ring-lightModePostOutlineHover dark:hover:ring-darkModePostOutlineHover transition-colors">
   <a href={`/blog/${post.slug}`} class="block">
     {post.data.image ? (
       <img src={post.data.image.src} alt={post.data.imageAlt ?? post.data.title} class="w-full h-48 object-cover" />
     ) : (
-      <div class="w-full h-48 bg-gradient-to-br from-cardFrom to-cardTo dark:from-darkCardFrom dark:to-darkCardTo"></div>
+      <div class="w-full h-48 bg-gradient-to-br from-lightModePostFrom to-lightModePostTo dark:from-darkModePostFrom dark:to-darkModePostTo"></div>
     )}
     <div class="p-4">
       <h2 class="text-xl font-semibold text-lightModeForeground dark:text-darkModeForeground">{post.data.title}</h2>
