@@ -24,21 +24,36 @@
       "id": "1728534577188",
       "icon": "facebook",
       "url": "https://www.facebook.com/mitchsvids"
+    },
+    {
+      "id": "1728534577189",
+      "icon": "spotify",
+      "url": "https://open.spotify.com/artist/29VBDb5vQdlVKVzqAhXao6?si=r0g7MufdS0yt99XXtzdfpA"
     }
   ],
   "customLinks": [
     {
+      "id": "1728534585738",
+      "title": "🎶 Latest music video",
+      "url": "https://youtu.be/zQMMEtzH6hI"
+    },
+    {
       "id": "1728534585739",
+      "title": "💘 How I met my fiancee",
+      "url": "https://youtu.be/xj84SI7OS8o"
+    },
+    {
+      "id": "1728534585740",
       "title": "📙 Shareable Bible verses app",
       "url": "https://quotd.vercel.app/"
     },
     {
-      "id": "1728534585738",
+      "id": "1728534585741",
       "title": "👨‍💻 Developer portfolio",
       "url": "https://mitchellwallace.dev"
     },
     {
-      "id": "1728534585740",
+      "id": "1728534585742",
       "title": "🎨 Web design studio",
       "url": "https://ephodstudio.com/"
     }

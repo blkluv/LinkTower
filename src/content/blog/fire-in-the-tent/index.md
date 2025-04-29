@@ -1,6 +1,6 @@
 ---
 title: Fire in the Tent
-description: The young people in the tent are God's people. **They perish for lack of action**. “These are my people” says the Lord. “Feed them.”
+description: The young people in the tent are God's people. They perish for lack of action. “These are my people” says the Lord. “Feed them.”
 publicationDate: 2025-02-04
 
 # Dreamed: 2022-05-29
