@@ -1,9 +1,10 @@
 ---
-const { text, icon, url } = Astro.props;
+import { Icon } from "astro-icon/components";
+const { link } = Astro.props;
 
 const linkClasses = [
   // Base
-  "flex items-center justify-center gap-2 rounded-full px-6 py-3 text-lg transition-colors",
+  "flex items-center gap-2 rounded-full px-6 py-3 text-lg transition-colors",
 
   // Light mode
   "bg-lightModeCustomLinkBackground",
@@ -25,13 +26,47 @@ const linkClasses = [
   "dark:hover:text-darkModeCustomLinkTextHover",
   "dark:hover:ring-darkModeCustomLinkOutlineHover"
 ].join(" ");
+
+const iconClasses = [
+  // Base
+  "size-6 transition-colors",
+  
+  // Light mode
+  "text-lightModeIconLinkText",
+  
+  // Hover
+  // "group-hover:text-lightModeIconLinkTextHover",
+  
+  // Dark mode
+  "dark:text-darkModeIconLinkText",
+  
+  // Dark Hover
+  // "group-hover:dark:text-darkModeIconLinkTextHover"
+].join(" ");
 ---
 
 <li>
   <a
-    href={url}
+    href={link.url}
     class={linkClasses}
   >
-    <slot />
+    <div class="flex items-center justify-between w-full">
+      <Icon
+        name={link.icon ?? "link"}
+        class={iconClasses}
+      />
+      <div class="flex-1 text-center">
+        {link.title}
+        {link.description ? (
+          <p class="text-sm text-lightModeForegroundMuted dark:text-darkModeForegroundMuted">
+            {link.description}
+          </p>
+        ) : null}
+      </div>
+      <Icon
+        name={link.icon ?? "link"}
+        class={iconClasses}
+      />
+    </div>
   </a>
 </li>
