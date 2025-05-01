@@ -8,6 +8,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import Content from "@/components/Content.astro";
 import Post from "@/components/Post.astro";
 import SeoPage from "@/components/SeoPage.astro";
+import Contact from "@/components/Contact.astro";
 
 const posts = (await getCollection("blog")).sort(
   (a: CollectionEntry<"blog">, b: CollectionEntry<"blog">) =>
@@ -26,6 +27,11 @@ const posts = (await getCollection("blog")).sort(
             <Post post={post} />
           ))}
         </ul>
+      ) : null
+    }
+    {
+      SITE.contactFormEnabled ? (
+        <Contact />
       ) : null
     }
   </main>
