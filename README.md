@@ -13,7 +13,12 @@ Run this in your terminal:
 ```bash
 git clone github.com/mitchell-wallace/my-links
 git remote add upstream https://mitchell-wallace@github.com/mitchell-wallace/treelinkplusplus
+cd my-links
+pnpm install
+pnpm run dev
 ```
+
+To use the contact form, you will need to get an access key from [Web3Forms](https://web3forms.com). Add the access key to the `siteConfig.json` file.
 
 Then read Treelink's [Quick start guide](https://docs.treelink.app/guides/quick-start/) to get started with customisation. Most content from Treelink's docs is still aplicable to Treelink++.
 
@@ -24,6 +29,7 @@ Then read Treelink's [Quick start guide](https://docs.treelink.app/guides/quick-
 - Icon support for hundreds of sites
 - RSS and sitemap generation
 - Optional blog
+- Optional contact form using [Web3Forms](https://web3forms.com)
 - Web vitals: 100 100 100 100
 
 ## 🧞 Commands
