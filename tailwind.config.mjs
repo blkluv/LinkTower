@@ -18,30 +18,30 @@ export default {
   theme: {
     extend: {
       colors: {
-          "primary-100": "var(--primary-100)",
-          "primary-200": "var(--primary-200)",
-          "primary-300": "var(--primary-300)",
-          "primary-content": "var(--primary-content)",
+          "primary-100": "oklch(from var(--primary-100) l c h / <alpha-value>)",
+          "primary-200": "oklch(from var(--primary-200) l c h / <alpha-value>)",
+          "primary-300": "oklch(from var(--primary-300) l c h / <alpha-value>)",
+          "primary-content": "oklch(from var(--primary-content) l c h / <alpha-value>)",
 
-          "secondary-100": "var(--secondary-100)",
-          "secondary-200": "var(--secondary-200)",
-          "secondary-300": "var(--secondary-300)",
-          "secondary-content": "var(--secondary-content)",
+          "secondary-100": "oklch(from var(--secondary-100) l c h / <alpha-value>)",
+          "secondary-200": "oklch(from var(--secondary-200) l c h / <alpha-value>)",
+          "secondary-300": "oklch(from var(--secondary-300) l c h / <alpha-value>)",
+          "secondary-content": "oklch(from var(--secondary-content) l c h / <alpha-value>)",
 
-          "accent-100": "var(--accent-100)",
-          "accent-200": "var(--accent-200)",
-          "accent-300": "var(--accent-300)",
-          "accent-content": "var(--accent-content)",
+          "accent-100": "oklch(from var(--accent-100) l c h / <alpha-value>)",
+          "accent-200": "oklch(from var(--accent-200) l c h / <alpha-value>)",
+          "accent-300": "oklch(from var(--accent-300) l c h / <alpha-value>)",
+          "accent-content": "oklch(from var(--accent-content) l c h / <alpha-value>)",
 
-          "neutral-100": "var(--neutral-100)",
-          "neutral-200": "var(--neutral-200)",
-          "neutral-300": "var(--neutral-300)",
-          "neutral-content": "var(--neutral-content)",
+          "neutral-100": "oklch(from var(--neutral-100) l c h / <alpha-value>)",
+          "neutral-200": "oklch(from var(--neutral-200) l c h / <alpha-value>)",
+          "neutral-300": "oklch(from var(--neutral-300) l c h / <alpha-value>)",
+          "neutral-content": "oklch(from var(--neutral-content) l c h / <alpha-value>)",
 
-          "base-100": "var(--base-100)",
-          "base-200": "var(--base-200)",
-          "base-300": "var(--base-300)",
-          "base-content": "var(--base-content)",
+          "base-100": "oklch(from var(--base-100) l c h / <alpha-value>)",
+          "base-200": "oklch(from var(--base-200) l c h / <alpha-value>)",
+          "base-300": "oklch(from var(--base-300) l c h / <alpha-value>)",
+          "base-content": "oklch(from var(--base-content) l c h / <alpha-value>)",
       }
     }
   },
