@@ -26,9 +26,6 @@ importers:
       astro-icon:
         specifier: ^1.1.1
         version: 1.1.5
-      astro-link:
-        specifier: 'file:'
-        version: file:(@types/node@22.13.11)(prettier-plugin-astro@0.14.1)(prettier@3.5.3)(rollup@4.37.0)
       tailwindcss:
         specifier: ^3.4.14
         version: 3.4.17
@@ -825,9 +822,6 @@ packages:
 
   astro-icon@1.1.5:
     resolution: {integrity: sha512-CJYS5nWOw9jz4RpGWmzNQY7D0y2ZZacH7atL2K9DeJXJVaz7/5WrxeyIxO8KASk1jCM96Q4LjRx/F3R+InjJrw==}
-
-  'astro-link@file:':
-    resolution: {directory: '', type: directory}
 
   astro@4.16.18:
     resolution: {integrity: sha512-G7zfwJt9BDHEZwlaLNvjbInIw2hPryyD654314KV/XT34pJU6SfN1S+mWa8RAkALcZNJnJXCJmT3JXLQStD3Lw==}
@@ -3433,32 +3427,6 @@ snapshots:
     transitivePeerDependencies:
       - debug
       - supports-color
-
-  astro-link@file:(@types/node@22.13.11)(prettier-plugin-astro@0.14.1)(prettier@3.5.3)(rollup@4.37.0):
-    dependencies:
-      '@astrojs/check': 0.9.4(prettier-plugin-astro@0.14.1)(prettier@3.5.3)(typescript@5.8.2)
-      '@astrojs/rss': 4.0.11
-      '@astrojs/sitemap': 3.3.0
-      '@astrojs/tailwind': 5.1.5(astro@4.16.18(@types/node@22.13.11)(rollup@4.37.0)(typescript@5.8.2))(tailwindcss@3.4.17)
-      astro: 4.16.18(@types/node@22.13.11)(rollup@4.37.0)(typescript@5.8.2)
-      astro-icon: 1.1.5
-      tailwindcss: 3.4.17
-      typescript: 5.8.2
-    transitivePeerDependencies:
-      - '@types/node'
-      - debug
-      - less
-      - lightningcss
-      - prettier
-      - prettier-plugin-astro
-      - rollup
-      - sass
-      - sass-embedded
-      - stylus
-      - sugarss
-      - supports-color
-      - terser
-      - ts-node
 
   astro@4.16.18(@types/node@22.13.11)(rollup@4.37.0)(typescript@5.8.2):
     dependencies:
