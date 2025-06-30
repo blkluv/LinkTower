@@ -23,8 +23,17 @@ const iconClasses = [
 <li>
   <a
     href={link.url}
-    class={linkClasses}
+    class={link.image ? "flex flex-col rounded-3xl px-6 py-3 text-lg transition-colors ring-2 bg-base-100 text-base-content ring-base-300 hover:bg-base-200 hover:ring-base-content/20 overflow-hidden" : linkClasses}
   >
+    {link.image && (
+      <div class="w-full mb-3 -mx-6 -mt-3">
+        <img
+          src={link.image}
+          alt={link.imageAlt || link.title}
+          class="w-full aspect-square object-cover object-center"
+        />
+      </div>
+    )}
     <div class="flex items-center justify-between w-full">
       <Icon
         name={link.icon ?? "link"}

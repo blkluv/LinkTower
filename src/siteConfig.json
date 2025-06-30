@@ -3,7 +3,7 @@
   "bio": "Personal website and link collection",
   "profilePicture": "/profile-picture.jpg",
   "url": "https://johndoe.example.com",
-  "blog": true,
+  "blog": false,
   "contactFormEnabled": true,
   "web3FormsAccessKey": "YOUR_ACCESS_KEY_HERE",
   "iconLinks": [
@@ -39,19 +39,25 @@
       "title": "My Blog",
       "icon": "material-symbols:stylus-note-outline-rounded",
       "description": "I write about tech and programming mostly",
-      "url": "https://johndoe.example.com/blog"
+      "url": "https://johndoe.example.com/blog",
+      "image": "/src/assets/bamboo-square.jpg",
+      "imageAlt": "Bamboo"
     },
     {
       "id": "1728534585739",
       "title": "My Portfolio",
       "icon": "fluent-emoji-high-contrast:briefcase",
-      "url": "https://johndoe.example.com/portfolio"
+      "url": "https://johndoe.example.com/portfolio",
+      "image": "/src/assets/bamboo-tall.jpg",
+      "imageAlt": "Bamboo"
     },
     {
       "id": "1728534585740",
       "title": "Recommended Books",
       "icon": "fluent-emoji-high-contrast:books",
-      "url": "https://johndoe.example.com/books"
+      "url": "https://johndoe.example.com/books",
+      "image": "/src/assets/bamboo-wide.jpg",
+      "imageAlt": "Bamboo"
     },
     {
       "id": "1728534585741",

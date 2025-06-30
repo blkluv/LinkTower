@@ -24,6 +24,8 @@ interface CustomLink {
   title: string;
   description?: string;
   url: string;
+  image?: string;
+  imageAlt?: string;
 }
 
 export const SITE: SiteConfiguration = {
