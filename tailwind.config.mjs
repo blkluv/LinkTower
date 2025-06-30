@@ -42,6 +42,9 @@ export default {
           "base-200": "oklch(from var(--base-200) l c h / <alpha-value>)",
           "base-300": "oklch(from var(--base-300) l c h / <alpha-value>)",
           "base-content": "oklch(from var(--base-content) l c h / <alpha-value>)",
+
+          "bg-top": "oklch(from var(--bg-top) l c h / <alpha-value>)",
+          "bg-bottom": "oklch(from var(--bg-bottom) l c h / <alpha-value>)",
       }
     }
   },

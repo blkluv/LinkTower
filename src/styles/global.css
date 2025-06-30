@@ -31,6 +31,9 @@
     --base-200: oklch(0.93 0.01 237);
     --base-300: oklch(0.86 0.02 237);
     --base-content: oklch(0.20 0.02 237);
+
+    --bg-top: oklch(0.95 0.01 237);
+    --bg-bottom: oklch(0.91 0.01 237);
   }
 
   [data-theme="treelink-light"] {
@@ -61,9 +64,12 @@
     --neutral-300: oklch(0.54 0.04 237);
     --neutral-content: oklch(0.84 0.03 237);
     
-    --base-100: oklch(0.18 0.02 237);
-    --base-200: oklch(0.26 0.02 237);
-    --base-300: oklch(0.34 0.03 237);
+    --base-100: oklch(0.26 0.02 237);
+    --base-200: oklch(0.34 0.02 237);
+    --base-300: oklch(0.42 0.03 237);
     --base-content: oklch(0.93 0.00 237);
+
+    --bg-top: oklch(0.17 0.02 237);
+    --bg-bottom: oklch(0.22 0.02 237);
   }
 }
