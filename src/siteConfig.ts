@@ -12,16 +12,23 @@ export interface SiteConfiguration {
   customLinks: CustomLink[];
 }
 
+type ColorVariant = 'base' | 'primary' | 'secondary' | 'accent' | 'neutral';
+
 interface IconLink {
   id: string;
   icon: string;
   url: string;
+  color?: ColorVariant;
 }
 
 interface CustomLink {
   id: string;
+  icon?: string;
   title: string;
+  description?: string;
   url: string;
+  image?: string;
+  imageAlt?: string;
 }
 
 export const SITE: SiteConfiguration = {

@@ -1,8 +1,8 @@
 import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import sitemap from "@astrojs/sitemap";
-
 import icon from "astro-icon";
+import { getRequiredIcons } from "./src/lib/getRequiredIcons";
 
 // https://astro.build/config
 export default defineConfig({
@@ -10,5 +10,11 @@ export default defineConfig({
     "/blog": "/",
   },
   site: "https://example.treelink.com",
-  integrations: [tailwind(), sitemap(), icon()],
+  integrations: [
+    tailwind(), 
+    sitemap(), 
+    icon({
+      include: getRequiredIcons()
+    })
+  ],
 });

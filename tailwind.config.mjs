@@ -1,109 +1,66 @@
+import typography from '@tailwindcss/typography';
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
+  safelist: [
+    // IconLink color variants - explicit inclusion for production builds
+    // Primary colors
+    'bg-primary-100', 'bg-primary-200', 'ring-primary-300', 'hover:bg-primary-200', 'hover:ring-primary', 'text-primary', 'group-hover:text-primary-content',
+    // Secondary colors
+    'bg-secondary-100', 'bg-secondary-200', 'ring-secondary-300', 'hover:bg-secondary-200', 'hover:ring-secondary', 'text-secondary', 'group-hover:text-secondary-content',
+    // Accent colors
+    'bg-accent-100', 'bg-accent-200', 'ring-accent-300', 'hover:bg-accent-200', 'hover:ring-accent', 'text-accent', 'group-hover:text-accent-content',
+    // Neutral colors
+    'bg-neutral-100', 'bg-neutral-200', 'ring-neutral-300', 'hover:bg-neutral-200', 'hover:ring-neutral', 'text-neutral', 'group-hover:text-neutral-content',
+    
+    // CustomLink color variants - explicit inclusion for production builds
+    // Base colors
+    'bg-base-100', 'bg-base-200', 'ring-base-300', 'hover:bg-base-200', 'hover:ring-base-content/20', 'text-base-content', 'text-base-content/60', 'text-base-content/70',
+    // Primary colors for CustomLink
+    'hover:ring-primary-content/20', 'text-primary-content', 'text-primary-content/60', 'text-primary-content/70',
+    // Secondary colors for CustomLink
+    'hover:ring-secondary-content/20', 'text-secondary-content', 'text-secondary-content/60', 'text-secondary-content/70',
+    // Accent colors for CustomLink
+    'hover:ring-accent-content/20', 'text-accent-content', 'text-accent-content/60', 'text-accent-content/70',
+    // Neutral colors for CustomLink
+    'hover:ring-neutral-content/20', 'text-neutral-content', 'text-neutral-content/60', 'text-neutral-content/70',
+  ],
   future: {
     hoverOnlyWhenSupported: true,
   },
-  plugins: [require("@tailwindcss/typography")],
   theme: {
     extend: {
       colors: {
-        // Light mode
-        lightModeBackgroundFrom:
-          "rgb(var(--light-mode-background-from) / <alpha-value>)",
-        lightModeBackgroundTo:
-          "rgb(var(--light-mode-background-to) / <alpha-value>)",
-        lightModeForeground:
-          "rgb(var(--light-mode-foreground) / <alpha-value>)",
-        lightModeForegroundMuted:
-          "rgb(var(--light-mode-foreground-muted) / <alpha-value>)",
-        lightModeIconLinkOutline:
-          "rgb(var(--light-mode-icon-link-outline) / <alpha-value>)",
-        lightModeIconLinkBackground:
-          "rgb(var(--light-mode-icon-link-background) / <alpha-value>)",
-        lightModeIconLinkText:
-          "rgb(var(--light-mode-icon-link-text) / <alpha-value>)",
-        lightModeIconLinkOutlineHover:
-          "rgb(var(--light-mode-icon-link-outline-hover) / <alpha-value>)",
-        lightModeIconLinkBackgroundHover:
-          "rgb(var(--light-mode-icon-link-background-hover) / <alpha-value>)",
-        lightModeIconLinkTextHover:
-          "rgb(var(--light-mode-icon-link-text-hover) / <alpha-value>)",
-        lightModeCustomLinkOutline:
-          "rgb(var(--light-mode-custom-link-outline) / <alpha-value>)",
-        lightModeCustomLinkBackground:
-          "rgb(var(--light-mode-custom-link-background) / <alpha-value>)",
-        lightModeCustomLinkText:
-          "rgb(var(--light-mode-custom-link-text) / <alpha-value>)",
-        lightModeCustomLinkOutlineHover:
-          "rgb(var(--light-mode-custom-link-outline-hover) / <alpha-value>)",
-        lightModeCustomLinkBackgroundHover:
-          "rgb(var(--light-mode-custom-link-background-hover) / <alpha-value>)",
-        lightModeCustomLinkTextHover:
-          "rgb(var(--light-mode-custom-link-text-hover) / <alpha-value>)",
-        lightModePostOutline: 
-          "rgb(var(--light-mode-post-outline) / <alpha-value>)",
-        lightModePostBackground: 
-          "rgb(var(--light-mode-post-background) / <alpha-value>)",
-        lightModePostText: 
-          "rgb(var(--light-mode-post-text) / <alpha-value>)",
-        lightModePostOutlineHover: 
-          "rgb(var(--light-mode-post-outline-hover) / <alpha-value>)",
-        lightModePostBackgroundHover: 
-          "rgb(var(--light-mode-post-background-hover) / <alpha-value>)",
-        lightModePostTextHover: 
-          "rgb(var(--light-mode-post-text-hover) / <alpha-value>)",
-        lightModePostFrom: 
-          "rgb(var(--light-mode-post-gradient-from) / <alpha-value>)",
-        lightModePostTo: 
-          "rgb(var(--light-mode-post-gradient-to) / <alpha-value>)",
+          "primary-100": "oklch(from var(--primary-100) l c h / <alpha-value>)",
+          "primary-200": "oklch(from var(--primary-200) l c h / <alpha-value>)",
+          "primary-300": "oklch(from var(--primary-300) l c h / <alpha-value>)",
+          "primary-content": "oklch(from var(--primary-content) l c h / <alpha-value>)",
 
-        darkModeBackgroundFrom: "rgb(var(--dark-mode-background-from) / <alpha-value>)",
-        darkModeBackgroundTo: "rgb(var(--dark-mode-background-to) / <alpha-value>)",
-        darkModeForeground: "rgb(var(--dark-mode-foreground) / <alpha-value>)",
-        darkModeForegroundMuted:
-          "rgb(var(--dark-mode-foreground-muted) / <alpha-value>)",
-        darkModeIconLinkOutline:
-          "rgb(var(--dark-mode-icon-link-outline) / <alpha-value>)",
-        darkModeIconLinkBackground:
-          "rgb(var(--dark-mode-icon-link-background) / <alpha-value>)",
-        darkModeIconLinkText:
-          "rgb(var(--dark-mode-icon-link-text) / <alpha-value>)",
-        darkModeIconLinkOutlineHover:
-          "rgb(var(--dark-mode-icon-link-outline-hover) / <alpha-value>)",
-        darkModeIconLinkBackgroundHover:
-          "rgb(var(--dark-mode-icon-link-background-hover) / <alpha-value>)",
-        darkModeIconLinkTextHover:
-          "rgb(var(--dark-mode-icon-link-text-hover) / <alpha-value>)",
-        darkModeCustomLinkOutline:
-          "rgb(var(--dark-mode-custom-link-outline) / <alpha-value>)",
-        darkModeCustomLinkBackground:
-          "rgb(var(--dark-mode-custom-link-background) / <alpha-value>)",
-        darkModeCustomLinkText:
-          "rgb(var(--dark-mode-custom-link-text) / <alpha-value>)",
-        darkModeCustomLinkOutlineHover:
-          "rgb(var(--dark-mode-custom-link-outline-hover) / <alpha-value>)",
-        darkModeCustomLinkBackgroundHover:
-          "rgb(var(--dark-mode-custom-link-background-hover) / <alpha-value>)",
-        darkModeCustomLinkTextHover:
-          "rgb(var(--dark-mode-custom-link-text-hover) / <alpha-value>)",
-        darkModePostOutline: 
-          "rgb(var(--dark-mode-post-outline) / <alpha-value>)",
-        darkModePostBackground: 
-          "rgb(var(--dark-mode-post-background) / <alpha-value>)",
-        darkModePostText: 
-          "rgb(var(--dark-mode-post-text) / <alpha-value>)",
-        darkModePostOutlineHover: 
-          "rgb(var(--dark-mode-post-outline-hover) / <alpha-value>)",
-        darkModePostBackgroundHover: 
-          "rgb(var(--dark-mode-post-background-hover) / <alpha-value>)",
-        darkModePostTextHover: 
-          "rgb(var(--dark-mode-post-text-hover) / <alpha-value>)",
-        darkModePostFrom: 
-          "rgb(var(--dark-mode-post-gradient-from) / <alpha-value>)",
-        darkModePostTo: 
-          "rgb(var(--dark-mode-post-gradient-to) / <alpha-value>)",
-      },
-    },
+          "secondary-100": "oklch(from var(--secondary-100) l c h / <alpha-value>)",
+          "secondary-200": "oklch(from var(--secondary-200) l c h / <alpha-value>)",
+          "secondary-300": "oklch(from var(--secondary-300) l c h / <alpha-value>)",
+          "secondary-content": "oklch(from var(--secondary-content) l c h / <alpha-value>)",
+
+          "accent-100": "oklch(from var(--accent-100) l c h / <alpha-value>)",
+          "accent-200": "oklch(from var(--accent-200) l c h / <alpha-value>)",
+          "accent-300": "oklch(from var(--accent-300) l c h / <alpha-value>)",
+          "accent-content": "oklch(from var(--accent-content) l c h / <alpha-value>)",
+
+          "neutral-100": "oklch(from var(--neutral-100) l c h / <alpha-value>)",
+          "neutral-200": "oklch(from var(--neutral-200) l c h / <alpha-value>)",
+          "neutral-300": "oklch(from var(--neutral-300) l c h / <alpha-value>)",
+          "neutral-content": "oklch(from var(--neutral-content) l c h / <alpha-value>)",
+
+          "base-100": "oklch(from var(--base-100) l c h / <alpha-value>)",
+          "base-200": "oklch(from var(--base-200) l c h / <alpha-value>)",
+          "base-300": "oklch(from var(--base-300) l c h / <alpha-value>)",
+          "base-content": "oklch(from var(--base-content) l c h / <alpha-value>)",
+
+          "bg-top": "oklch(from var(--bg-top) l c h / <alpha-value>)",
+          "bg-bottom": "oklch(from var(--bg-bottom) l c h / <alpha-value>)",
+      }
+    }
   },
+  plugins: [typography],
 };

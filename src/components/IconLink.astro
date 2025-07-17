@@ -1,46 +1,58 @@
 ---
 import { Icon } from "astro-icon/components";
 
-const { icon, url } = Astro.props;
+const { icon, url, color = 'base' } = Astro.props;
 
-const linkClasses = [
-  // Base
-  "group block rounded-full",
-  "p-3 ring-2 transition-colors",
-  
-  // Light mode
-  "bg-lightModeIconLinkBackground",
-  "ring-lightModeIconLinkOutline",
-  
-  // Hover
-  "hover:bg-lightModeIconLinkBackgroundHover",
-  "hover:ring-lightModeIconLinkOutlineHover",
-  
-  // Dark mode
-  "dark:bg-darkModeIconLinkBackground",
-  "dark:ring-darkModeIconLinkOutline",
-  
-  // Dark Hover
-  "dark:hover:bg-darkModeIconLinkBackgroundHover",
-  "dark:hover:ring-darkModeIconLinkOutlineHover"
-].join(" ");
+// Explicit color mapping to ensure all classes are visible to Tailwind during build
+const COLOR_MAP = {
+  base: {
+    bg: 'bg-base-100',
+    ring: 'ring-base-300/70',
+    hoverBg: 'hover:bg-base-200/70',
+    hoverRing: 'hover:ring-base-300',
+    text: 'text-base-content/70',
+    hoverText: 'group-hover:text-base-content'
+  },
+  primary: {
+    bg: 'bg-primary-100',
+    ring: 'ring-primary-300/70',
+    hoverBg: 'hover:bg-primary-200/70',
+    hoverRing: 'hover:ring-primary-300',
+    text: 'text-primary-content/70',
+    hoverText: 'group-hover:text-primary-content'
+  },
+  secondary: {
+    bg: 'bg-secondary-100',
+    ring: 'ring-secondary-300/70',
+    hoverBg: 'hover:bg-secondary-200/70',
+    hoverRing: 'hover:ring-secondary-300/70',
+    text: 'text-secondary-content/70',
+    hoverText: 'group-hover:text-secondary-content'
+  },
+  accent: {
+    bg: 'bg-accent-100',
+    ring: 'ring-accent-300/70',
+    hoverBg: 'hover:bg-accent-200/70',
+    hoverRing: 'hover:ring-accent-300/70',
+    text: 'text-accent-content/70',
+    hoverText: 'group-hover:text-accent-content'
+  },
+  neutral: {
+    bg: 'bg-neutral-100',
+    ring: 'ring-neutral-300/70',
+    hoverBg: 'hover:bg-neutral-200/70',
+    hoverRing: 'hover:ring-neutral-300/70',
+    text: 'text-neutral-content/70',
+    hoverText: 'group-hover:text-neutral-content'
+  }
+} as const;
 
-const iconClasses = [
-  // Base
-  "size-6 transition-colors",
-  
-  // Light mode
-  "text-lightModeIconLinkText",
-  
-  // Hover
-  "group-hover:text-lightModeIconLinkTextHover",
-  
-  // Dark mode
-  "dark:text-darkModeIconLinkText",
-  
-  // Dark Hover
-  "group-hover:dark:text-darkModeIconLinkTextHover"
-].join(" ");
+// Get color classes with fallback to base
+const colors = COLOR_MAP[color as keyof typeof COLOR_MAP] || COLOR_MAP.base;
+
+const linkClasses = `group block rounded-full p-3 ring-2 transition-colors ${colors.bg} ${colors.ring} ${colors.hoverBg} ${colors.hoverRing}`;
+const iconClasses = `size-6 transition-colors ${colors.text} ${colors.hoverText}`;
+
 ---
 
 <li>

@@ -1,37 +1,106 @@
 ---
-const { text, icon, url } = Astro.props;
+import { Icon } from "astro-icon/components";
+const { link } = Astro.props;
 
-const linkClasses = [
-  // Base
-  "flex items-center justify-center gap-2 rounded-full px-6 py-3 text-lg transition-colors",
+// Explicit color mapping to ensure all classes are visible to Tailwind during build
+const COLOR_MAP = {
+  base: {
+    bg: 'bg-base-100',
+    ring: 'ring-base-300/70',
+    hoverBg: 'hover:bg-base-200/70',
+    hoverRing: 'hover:ring-base-300',
+    text: 'text-base-content',
+    subtext: 'text-base-content/70',
+    icon: 'text-base-content/70'
+  },
+  primary: {
+    bg: 'bg-primary-100',
+    ring: 'ring-primary-300/70',
+    hoverBg: 'hover:bg-primary-200/70',
+    hoverRing: 'hover:ring-primary-300',
+    text: 'text-primary-content',
+    subtext: 'text-primary-content/70',
+    icon: 'text-primary-content/70'
+  },
+  secondary: {
+    bg: 'bg-secondary-100',
+    ring: 'ring-secondary-300/70',
+    hoverBg: 'hover:bg-secondary-200/70',
+    hoverRing: 'hover:ring-secondary-300',
+    text: 'text-secondary-content',
+    subtext: 'text-secondary-content/70',
+    icon: 'text-secondary-content/70'
+  },
+  accent: {
+    bg: 'bg-accent-100',
+    ring: 'ring-accent-300/70',
+    hoverBg: 'hover:bg-accent-200/70',
+    hoverRing: 'hover:ring-accent-300',
+    text: 'text-accent-content',
+    subtext: 'text-accent-content/70',
+    icon: 'text-accent-content/70'
+  },
+  neutral: {
+    bg: 'bg-neutral-100',
+    ring: 'ring-neutral-300/70',
+    hoverBg: 'hover:bg-neutral-200/70',
+    hoverRing: 'hover:ring-neutral-300',
+    text: 'text-neutral-content',
+    subtext: 'text-neutral-content/70',
+    icon: 'text-neutral-content/70'
+  }
+} as const;
 
-  // Light mode
-  "bg-lightModeCustomLinkBackground",
-  "text-lightModeCustomLinkText",
-  "ring-2 ring-lightModeCustomLinkOutline",
+// Get color classes with fallback to base
+const colors = COLOR_MAP[link.color as keyof typeof COLOR_MAP] || COLOR_MAP.base;
 
-  // Hover
-  "hover:bg-lightModeCustomLinkBackgroundHover",
-  "hover:text-lightModeCustomLinkTextHover",
-  "hover:ring-lightModeCustomLinkOutlineHover",
+const linkClasses = link.image 
+  ? `flex flex-col rounded-3xl px-6 py-3 text-lg transition-colors ring-2 ${colors.bg} ${colors.text} ${colors.ring} ${colors.hoverBg} ${colors.hoverRing} overflow-hidden`
+  : `flex items-center gap-2 rounded-full px-6 py-3 text-lg transition-colors ring-2 ${colors.bg} ${colors.text} ${colors.ring} ${colors.hoverBg} ${colors.hoverRing}`;
 
-  // Dark mode
-  "dark:bg-darkModeCustomLinkBackground",
-  "dark:text-darkModeCustomLinkText",
-  "dark:ring-darkModeCustomLinkOutline",
-
-  // Dark Hover
-  "dark:hover:bg-darkModeCustomLinkBackgroundHover",
-  "dark:hover:text-darkModeCustomLinkTextHover",
-  "dark:hover:ring-darkModeCustomLinkOutlineHover"
-].join(" ");
 ---
 
 <li>
   <a
-    href={url}
+    href={link.url}
     class={linkClasses}
   >
-    <slot />
+    {link.image && (
+      <div class="mb-3 -mx-6 -mt-3 max-w-[calc(100%+3rem)]"
+      >
+        <img
+          src={link.image}
+          alt={link.imageAlt || link.title}
+          class="w-full object-cover object-center aspect-[3/2]"
+          onload="
+            const ratio = this.naturalWidth / this.naturalHeight;
+            if (ratio > 3/2) {
+              this.classList.remove('aspect-[3/2]');
+              this.classList.add(`aspect-[${this.naturalWidth}/${this.naturalHeight}]`);
+            }
+          "
+        />
+      </div>
+    )}
+    <div class="flex items-center justify-between w-full">
+      <Icon
+        name={link.icon ?? "link"}
+        class={`size-6 transition-colors ${colors.icon}`}
+      />
+      <div class="flex-1 text-center">
+        <p class="font-semibold">
+          {link.title}
+        </p>
+        {link.description ? (
+          <p class={`text-sm ${colors.subtext}`}>
+            {link.description}
+          </p>
+        ) : null}
+      </div>
+      <Icon
+        name={"lucide:chevron-right"}
+        class={`size-6 transition-colors ${colors.icon}`}
+      />
+    </div>
   </a>
 </li>
