@@ -39,14 +39,18 @@
       "title": "Latest music video",
       "description": "'I Am With You', featuring Jojo Fang",
       "url": "https://youtu.be/zQMMEtzH6hI",
-      "icon": "youtube"
+      "icon": "youtube",
+      "color": "primary",
+      "image": "song-mini.webp"
     },
     {
       "id": "1728534585739",
       "title": "How I met my fiancee",
-      "description": "Read the story of how God led us",
+      "description": "Read the unbelievable story of how God led us",
       "url": "https://lovestory.mitchellwallace.net/blog/story",
-      "icon": "read"
+      "icon": "read",
+      "color": "secondary",
+      "image": "our-story.webp"
     },
     {
       "id": "1728534585740",
