@@ -7,43 +7,8 @@ import Post from "@/components/Post.astro";
 
 const posts = await getCollection("blog");
 
-const defaultSort = (a: CollectionEntry<"blog">, b: CollectionEntry<"blog">) => {
-  const aOrder = a.data.sortOrder;
-  const bOrder = b.data.sortOrder;
-  if (aOrder != null && bOrder != null) {
-    return aOrder - bOrder;
-  }
-  if (aOrder != null) return -1;
-  if (bOrder != null) return 1;
-  // Fallback: by publication date (oldest first)
-  return a.data.publicationDate.valueOf() - b.data.publicationDate.valueOf();
-};
-
-const sortParam = Astro.url.searchParams.get("sort") ?? "default";
-const q = (Astro.url.searchParams.get("q") ?? "").toLowerCase();
-
-const sorters: Record<string, (a: CollectionEntry<"blog">, b: CollectionEntry<"blog">) => number> = {
-  default: defaultSort,
-  "title-asc": (a, b) => a.data.title.localeCompare(b.data.title),
-  "title-desc": (a, b) => b.data.title.localeCompare(a.data.title),
-  "date-oldest": (a, b) => a.data.publicationDate.valueOf() - b.data.publicationDate.valueOf(),
-  "date-newest": (a, b) => b.data.publicationDate.valueOf() - a.data.publicationDate.valueOf(),
-};
-
-const activeSort = sorters[sortParam] ?? sorters.default;
-const filtered = q
-  ? posts.filter((p) => {
-      const hay = [
-        p.data.title,
-        p.data.description,
-        ...(p.data.tags ?? []),
-      ]
-        .join(" ")
-        .toLowerCase();
-      return hay.includes(q);
-    })
-  : posts;
-const sorted = [...filtered].sort(activeSort);
+// Render all posts unsorted - client-side JS will handle sorting/filtering
+const allPosts = posts;
 ---
 
 <BaseLayout>
@@ -51,27 +16,111 @@ const sorted = [...filtered].sort(activeSort);
   <main>
     <section class="py-8">
       <h1 class="text-3xl font-bold text-primary-content">Archive</h1>
-      <p class="mt-1 text-base-content/70">{sorted.length} posts</p>
+      <p class="mt-1 text-base-content/70"><span id="archive-count">{allPosts.length}</span> posts</p>
 
-      <form method="get" class="mt-6 flex flex-wrap gap-4 items-center">
+      <div id="archive-controls" class="mt-6 flex flex-wrap gap-4 items-center">
         <label for="sort" class="text-sm font-medium text-base-content/80">Sort by</label>
-        <select id="sort" name="sort" class="select select-bordered" onChange="this.form.submit()">
-          <option value="default" selected={sortParam === "default"}>Default (featured & date)</option>
-          <option value="title-asc" selected={sortParam === "title-asc"}>Title (A–Z)</option>
-          <option value="title-desc" selected={sortParam === "title-desc"}>Title (Z–A)</option>
-          <option value="date-newest" selected={sortParam === "date-newest"}>Date (newest)</option>
-          <option value="date-oldest" selected={sortParam === "date-oldest"}>Date (oldest)</option>
+        <select id="sort" class="select select-bordered">
+          <option value="default">Default (featured & date)</option>
+          <option value="title-asc">Title (A–Z)</option>
+          <option value="title-desc">Title (Z–A)</option>
+          <option value="date-newest">Date (newest)</option>
+          <option value="date-oldest">Date (oldest)</option>
         </select>
         <label for="q" class="text-sm font-medium text-base-content/80">Filter</label>
-        <input id="q" name="q" value={q} placeholder="Search posts" class="input input-bordered w-64" />
-        <noscript>
-          <button type="submit" class="btn btn-primary">Apply</button>
-        </noscript>
-      </form>
+        <input id="q" placeholder="Search posts" class="input input-bordered w-64" />
+      </div>
     </section>
 
-    <ul class="grid grid-cols-1 md:grid-cols-2 gap-8 list-none px-0 py-8">
-      {sorted.map((post) => (<Post post={post} />))}
+    <ul id="archive-list" class="grid grid-cols-1 md:grid-cols-2 gap-8 list-none px-0 py-8">
+      {allPosts.map((post) => (<Post post={post} />))}
     </ul>
+    <script is:inline>
+      // Client-side filtering and sorting
+      (function () {
+        const controls = document.getElementById('archive-controls');
+        if (!controls) return;
+        
+        const input = document.getElementById('q');
+        const select = document.getElementById('sort');
+        const list = document.getElementById('archive-list');
+        const countEl = document.getElementById('archive-count');
+        
+        if (!input || !select || !list) return;
+
+        const items = Array.from(list.children);
+        
+        // Initialize from URL params
+        const params = new URLSearchParams(window.location.search);
+        const initialQuery = params.get('q') || '';
+        const initialSort = params.get('sort') || 'default';
+        
+        input.value = initialQuery;
+        select.value = initialSort;
+
+        function sortItems(sortType) {
+          const sortedItems = [...items].sort((a, b) => {
+            switch (sortType) {
+              case 'title-asc':
+                return (a.dataset.title || '').localeCompare(b.dataset.title || '');
+              case 'title-desc':
+                return (b.dataset.title || '').localeCompare(a.dataset.title || '');
+              case 'date-newest':
+                return new Date(b.dataset.date || 0).getTime() - new Date(a.dataset.date || 0).getTime();
+              case 'date-oldest':
+                return new Date(a.dataset.date || 0).getTime() - new Date(b.dataset.date || 0).getTime();
+              case 'default':
+              default:
+                // Default sort: prioritize sortOrder, then by date (oldest first)
+                const aOrder = parseInt(a.dataset.sortOrder) || null;
+                const bOrder = parseInt(b.dataset.sortOrder) || null;
+                if (aOrder !== null && bOrder !== null) {
+                  return aOrder - bOrder;
+                }
+                if (aOrder !== null) return -1;
+                if (bOrder !== null) return 1;
+                return new Date(a.dataset.date || 0).getTime() - new Date(b.dataset.date || 0).getTime();
+            }
+          });
+          
+          // Re-append items in sorted order
+          sortedItems.forEach(item => list.appendChild(item));
+        }
+
+        function applyFilter() {
+          const query = (input.value || '').trim().toLowerCase();
+          const sortType = select.value || 'default';
+          
+          // First sort items
+          sortItems(sortType);
+          
+          // Then filter
+          let visible = 0;
+          for (const li of items) {
+            const hay = (li.textContent || '').toLowerCase();
+            const show = query === '' || hay.includes(query);
+            li.style.display = show ? '' : 'none';
+            if (show) visible++;
+          }
+          
+          if (countEl) countEl.textContent = String(visible);
+          
+          // Update URL without reload
+          const newParams = new URLSearchParams();
+          if (query) newParams.set('q', query);
+          if (sortType !== 'default') newParams.set('sort', sortType);
+          
+          const newUrl = `${window.location.pathname}${newParams.toString() ? '?' + newParams.toString() : ''}`;
+          window.history.replaceState({}, '', newUrl);
+        }
+
+        // Event listeners
+        input.addEventListener('input', applyFilter);
+        select.addEventListener('change', applyFilter);
+        
+        // Initialize
+        applyFilter();
+      })();
+    </script>
   </main>
 </BaseLayout>
