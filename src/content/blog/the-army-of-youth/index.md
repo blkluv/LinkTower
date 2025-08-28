@@ -5,7 +5,7 @@ dreamedDate: 2023-05-15
 writtenDate: 2023-05-15
 firstSharedDate: 2025-08-28
 publicationDate: 2025-08-28
-sortOrder: 2.0
+# sortOrder: 
 ---
 
 Before the closing of the work, the youth must be inspired and equipped. This is the work of the Holy Spirit. I believe this dream is symbolic of the Holy Spirit speaking to youth worldwide.

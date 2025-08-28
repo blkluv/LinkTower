@@ -5,7 +5,7 @@ dreamedDate: 2025-08-11
 writtenDate: 2025-08-11
 firstSharedDate: 2025-08-11
 publicationDate: 2025-08-11
-sortOrder: 2.0
+# sortOrder:
 ---
 
 I had discovered a few dark dots in my ears; one spot on the hollow beside the ear canal and another on the ear lobe, the same on each side. They were dark, and about the size of spots of green mould as they begin to grow on old bread; perhaps 1-1.5mm in diameter.
