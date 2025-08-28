@@ -43,7 +43,8 @@
       "url": "https://youtu.be/zQMMEtzH6hI",
       "icon": "youtube",
       "color": "primary",
-      "image": "song-mini.webp"
+      "image": "song-mini.webp",
+      "imageAlt": "A youtube thumnail with a photo of Mitch and Jojo and the text 'I Am With You'"
     },
     {
       "id": "1728534585739",
@@ -52,7 +53,8 @@
       "url": "https://lovestory.mitchellwallace.net/blog/story",
       "icon": "read",
       "color": "secondary",
-      "image": "our-story.webp"
+      "image": "our-story.webp",
+      "imageAlt": "A photo of me and my fiancee at sunset"
     },
     {
       "id": "1728534585740",
@@ -60,7 +62,9 @@
       "description": "Web app for sharing Bible verses",
       "url": "https://quotd.vercel.app/app",
       "icon": "share",
-      "color": "neutral"
+      "color": "neutral",
+      "image": "quotd-example.png",
+      "imageAlt": "An image of a tree in the deser with the words 'The Lord is good, a stronghold in the day of trouble'"
     },
     {
       "id": "1728534585741",
