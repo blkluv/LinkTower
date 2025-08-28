@@ -1,5 +1,6 @@
 ---
 import { getCollection, type CollectionEntry } from "astro:content";
+import { Icon } from "astro-icon/components";
 
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import SeoPage from "@/components/head/SeoPage.astro";
@@ -20,8 +21,7 @@ const selectClasses = [
   "focus:border-base-300/70 focus:ring-base-300/70",
   
   // Custom select styling
-  "appearance-none bg-no-repeat bg-right pr-10",
-  "cursor-pointer"
+  "appearance-none cursor-pointer"
 ].join(" ");
 
 const inputClasses = [
@@ -63,18 +63,23 @@ const navLinkClasses = [
       <h1 class="text-3xl font-bold text-secondary-content dark:text-primary-content">Archive</h1>
       <p class="mt-1 text-base-content/70"><span id="archive-count">{allPosts.length}</span> posts</p>
 
-      <div id="archive-controls" class="mt-8 p-6 bg-base-100 rounded-2xl ring-2 ring-base-300/70 shadow-sm">
-        <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+      <div id="archive-controls" class="mt-8 p-6 bg-base-100 rounded-3xl ring-2 ring-base-300/70 shadow-sm">
+        <div class="grid gap-4 sm:grid-cols-2 sm:items-center">
           <div class="flex flex-col gap-2 min-w-0">
             <label for="sort" class={labelClasses}>Sort by</label>
-            <div class="relative">
-              <select id="sort" class={selectClasses} style="background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 4 5\'><path fill=\'%23666\' d=\'M2 0L0 2h4zm0 5L0 3h4z\'/></svg>')">
-                <option value="default">Default (featured & date)</option>
+            <div class="relative w-full">
+              <select id="sort" class={`${selectClasses} w-full pr-10`}>
+                <option value="default">Featured</option>
                 <option value="title-asc">Title (A–Z)</option>
                 <option value="title-desc">Title (Z–A)</option>
                 <option value="date-newest">Date (newest)</option>
                 <option value="date-oldest">Date (oldest)</option>
               </select>
+              <Icon 
+                id="sort-chevron"
+                name="lucide:chevron-down" 
+                class="absolute right-3 top-1/2 -translate-y-1/2 size-5 text-base-content/60 pointer-events-none transition-transform duration-200 ease-in-out"
+              />
             </div>
           </div>
           
@@ -188,3 +193,25 @@ const navLinkClasses = [
     </script>
   </main>
 </BaseLayout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const sortSelect = document.getElementById('sort') as HTMLSelectElement;
+    const sortChevron = document.getElementById('sort-chevron');
+    
+    if (sortSelect && sortChevron) {
+      // Handle dropdown open/close states
+      sortSelect.addEventListener('mousedown', () => {
+        sortChevron.style.transform = 'translateY(-50%) rotate(180deg)';
+      });
+      
+      sortSelect.addEventListener('blur', () => {
+        sortChevron.style.transform = 'translateY(-50%) rotate(0deg)';
+      });
+      
+      sortSelect.addEventListener('change', () => {
+        sortChevron.style.transform = 'translateY(-50%) rotate(0deg)';
+      });
+    }
+  });
+</script>
