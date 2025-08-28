@@ -4,7 +4,7 @@
   "profilePicture": "/profile-picture.jpg",
   "url": "https://mitchellwallace.net",
   "blog": true,
-  "blogHomePostLimit": 5,
+  "blogHomePostLimit": 3,
   "contactFormEnabled": true,
   "web3FormsAccessKey": "ac59967a-318d-4a10-b81e-dbdb45e9847a",
   "umamiWebsiteId": "b2d83dc6-ec1f-4c8e-841e-398b99f38a12",

@@ -44,10 +44,10 @@ const navLinkClasses = [
   "underline underline-offset-4",
   
   // Light mode
-  "text-primary-content/70",
+  "text-secondary-content/70 dark:text-primary-content/70",
   
   // Hover
-  "hover:text-primary-content",
+  "hover:text-secondary-content dark:hover:text-primary-content",
 ].join(" ");
 ---
 
@@ -60,7 +60,7 @@ const navLinkClasses = [
       >{`← GO BACK`}</a
     >
     <section class="py-8">
-      <h1 class="text-3xl font-bold text-primary-content">Archive</h1>
+      <h1 class="text-3xl font-bold text-secondary-content dark:text-primary-content">Archive</h1>
       <p class="mt-1 text-base-content/70"><span id="archive-count">{allPosts.length}</span> posts</p>
 
       <div id="archive-controls" class="mt-8 p-6 bg-base-100 rounded-2xl ring-2 ring-base-300/70 shadow-sm">
