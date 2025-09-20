@@ -1,6 +1,6 @@
 ---
 title: Fire in the Tent
-description: I then got down and started scraping up dirt to heap on the fire, and continued stomping the smaller parts, until it was finally put out. There were many onlookers who failed to help. There was one at my side who was unable to help but provided encouragement.
+description: I then got down on my knees and started scraping up dirt with my hands to heap on the fire, and continued stomping the smaller parts, until it was finally put out. There were many onlookers who failed to help. There was one at my side who was unable to help but provided encouragement.
 dreamedDate: 2022-05-29
 writtenDate: 2022-05-29
 firstSharedDate: 2025-02-04
