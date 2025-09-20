@@ -24,33 +24,32 @@ const selectedRevisionDate = selectedOption
   : undefined;
 
 const dropdownButtonClasses = [
-  "flex w-full items-center gap-3 rounded-full border",
-  // more subtle background and text
-  "border-base-content/10 bg-base-100/50 px-4 py-2.5 text-sm",
+  "flex w-full items-center gap-2 rounded-full border",
+  "border-base-content/10 bg-base-100/50 px-4 py-2 text-sm",
   "text-base-content/70 backdrop-blur transition-colors",
-  "hover:border-base-content/20 hover:text-base-content/80",
+  "hover:border-base-content/25 hover:text-base-content/80",
   "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-base-content/30",
 ].join(" " );
 
 const dropdownMenuClasses = [
-  "absolute right-0 z-20 mt-2 w-72 overflow-hidden rounded-2xl border",
+  "absolute right-0 z-20 mt-2 w-64 overflow-hidden rounded-2xl border",
   "border-base-content/10 bg-base-100/95 p-1.5 shadow-xl backdrop-blur",
 ].join(" " );
 
 const dropdownItemClasses = [
-  "flex w-full items-center justify-between gap-2 rounded-xl px-3 py-2 text-left text-sm",
+  "flex w-full items-center gap-2 rounded-xl px-3 py-2 text-left text-sm",
   "text-base-content/80 transition-colors",
   "hover:bg-base-content/5 hover:text-base-content",
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-base-content/40",
 ].join(" " );
 
 const dropdownContainerClasses = [
-  "mx-auto mt-4 flex w-full max-w-md items-center justify-center gap-3 px-6",
+  "mx-auto mt-4 flex w-full max-w-sm items-center justify-center gap-2 px-4",
   "sm:px-0",
 ].join(" " );
 
 const infoTooltipText =
-  "Revisions are made to improve clarity of writing, offer additional insight, or comment on events which have transpired since. For the sake of transparency, past revisions will continue to be made available.";
+  "Revisions are made to improve clarity of writing, offer additional insight, or comment on events which have transpired since. For the sake of transparency, past versions will continue to be made available.";
 ---
 
 {revisions && revisions.length > 1 && (
@@ -63,10 +62,10 @@ const infoTooltipText =
         aria-haspopup="listbox"
         aria-expanded="false"
       >
-        <span class="text-base-content/80">{selectedRevisionLabel}</span>
-        <span class="ml-auto text-xs text-base-content/60">{selectedRevisionDate}</span>
+        <span class="text-left justify-left flex-1 text-base-content/70">{selectedRevisionLabel}</span>
+        <span class="shrink-0 text-xs text-base-content/55">{selectedRevisionDate}</span>
         <svg
-          class="ml-1 size-4 text-base-content/50"
+          class="ml-2 size-4 text-base-content/50"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -93,8 +92,8 @@ const infoTooltipText =
             aria-current={revision.id === selectedRevisionId ? "page" : undefined}
             role="option"
           >
-            <span class="text-base-content/80">{revision.label}</span>
-            <span class="text-xs text-base-content/60">{formatDate(revision.date)}</span>
+            <span class="flex-1 text-base-content/80">{revision.label}</span>
+            <span class="shrink-0 text-xs text-base-content/60">{formatDate(revision.date)}</span>
           </a>
         ))}
       </div>
@@ -189,4 +188,9 @@ const infoTooltipText =
   document.addEventListener('astro:page-load', initRevisionDropdown);
   document.addEventListener('astro:after-swap', initRevisionDropdown);
 </script>
+
+
+
+
+
 

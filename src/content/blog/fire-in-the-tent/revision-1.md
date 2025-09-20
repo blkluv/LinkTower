@@ -7,7 +7,7 @@ firstSharedDate: 2025-02-04
 publicationDate: 2025-04-27
 revisionDate: 2025-09-20
 sortOrder: 1.0
-draft: true
+draft: false
 ---
 
 From a long and meandering dream, this is the part I am to share. By way of context, yesterday someone asked me if I was a prophet. I didn't have a response, and after I was silent for a few moments he said like it would suck to be a prophet because then you'd have dreams and you'd wake up and you'd have to write them down. I understood that this dream needed to be recorded.
