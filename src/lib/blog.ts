@@ -35,9 +35,14 @@ export function isRevisionEntry(entry: BlogEntry): boolean {
   return getRevisionMeta(entry).isRevision;
 }
 
+export function isDraftEntry(entry: BlogEntry): boolean {
+  return entry.data.draft === true;
+}
+
 export function groupBlogEntries(entries: BlogEntry[]): Map<string, GroupedEntries> {
   const map = new Map<string, GroupedEntries>();
   for (const entry of entries) {
+    if (isDraftEntry(entry)) continue;
     const meta = getRevisionMeta(entry);
     const baseSlug = meta.baseSlug;
     if (!map.has(baseSlug)) {
@@ -77,5 +82,5 @@ export function getLatestEntry(group: GroupedEntries): BlogEntry | undefined {
 }
 
 export function getBaseEntries(entries: BlogEntry[]): BlogEntry[] {
-  return entries.filter((entry) => !isRevisionEntry(entry));
+  return entries.filter((entry) => !isRevisionEntry(entry) && !isDraftEntry(entry));
 }

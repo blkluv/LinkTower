@@ -11,12 +11,13 @@ const blog = defineCollection({
       revisionDate: z.coerce.date().optional(),
       image: image()
         .refine((img) => img.width >= 1200, {
-          message: "Image should be 1200px × 630px.",
+          message: "Image should be 1200px x 630px.",
         })
         .optional(),
       imageAlt: z.string().optional(),
       tags: z.array(z.string()).optional(),
       sortOrder: z.number().optional(),
+      draft: z.boolean().default(false),
     }),
 });
 

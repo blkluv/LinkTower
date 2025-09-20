@@ -101,6 +101,7 @@ export async function getStaticPaths() {
 
 const { entry, revisions, selectedRevisionId } = Astro.props as Props;
 const { Content } = await entry.render();
+const hasRevisionSelector = revisions.length > 1;
 
 const navLinkClasses = [
   // Base
@@ -171,7 +172,9 @@ const publishDateClasses = [
         Revised on {formatDate(entry.data.revisionDate)}
       </p>
     )}
-    <RevisionSelector revisions={revisions} selectedRevisionId={selectedRevisionId} />
+    {hasRevisionSelector && (
+      <RevisionSelector revisions={revisions} selectedRevisionId={selectedRevisionId} />
+    )}
     <!-- <br class="my-6 opacity-50 border-base-content" /> -->
     <div class="prose mx-auto my-20 dark:prose-invert">
       <Content />
@@ -198,3 +201,6 @@ const publishDateClasses = [
     
   </main>
 </BaseLayout>
+
+
+
