@@ -33,7 +33,7 @@
       "id": "1728534585739",
       "title": "Quotd: Share the word",
       "description": "Web app for sharing Bible verses",
-      "url": "/blog/quotd",
+      "url": "/blog/quotd?ref=home",
       "icon": "share",
       "color": "neutral",
       "image": "quotd-example.png",
@@ -58,7 +58,7 @@
     {
       "id": "1728534585742",
       "title": "GitHub Profile",
-      "description": "View my open source contributions",
+      "description": "View my open source projects",
       "url": "https://github.com/mitchell-wallace",
       "icon": "github",
       "color": "neutral",
@@ -84,7 +84,7 @@
     {
       "id": "1728534585746",
       "title": "Hashi Animation",
-      "description": "Cool animation demo",
+      "description": "Demo of an API I built",
       "url": "https://mitchellwallace.dev",
       "icon": "play",
       "color": "base",
@@ -94,27 +94,10 @@
       "id": "1728534585747",
       "title": "Download LinkTower Logo",
       "description": "Get the official LinkTower logo",
-      "url": "/favicon.svg",
-      "icon": "download",
+      "url": "/profile-picture.png",
+      "icon": "image",
       "color": "primary",
-      "download": true
-    },
-    {
-      "id": "1728534585748",
-      "title": "Neutral Example",
-      "description": "Showcasing neutral color variant",
-      "url": "https://github.com/mitchell-wallace",
-      "icon": "github",
-      "color": "neutral",
-      "newTab": true
-    },
-    {
-      "id": "1728534585749",
-      "title": "Base Example",
-      "description": "Showcasing base color variant",
-      "url": "https://www.linkedin.com/in/mitchell-wallace-dev/",
-      "icon": "linkedin",
-      "color": "base",
+      "download": true,
       "newTab": true
     }
   ]

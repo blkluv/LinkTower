@@ -133,8 +133,8 @@ const colors = isGradient
   ? (GRADIENT_MAP[baseColor as keyof typeof GRADIENT_MAP] || GRADIENT_MAP.base)
   : (COLOR_MAP[baseColor as keyof typeof COLOR_MAP] || COLOR_MAP.base);
 
-// Determine the arrow icon based on newTab
-const arrowIcon = link.newTab ? "external-link" : "lucide:chevron-right";
+// Determine the arrow icon based on download and newTab
+const arrowIcon = link.download ? "download" : (link.newTab ? "external-link" : "lucide:chevron-right");
 
 const linkClasses = link.image || link.video
   ? `flex flex-col rounded-3xl px-6 py-3 text-lg transition-colors ring-2 ${colors.bg} ${colors.text} ${colors.ring} ${colors.hoverBg} ${colors.hoverRing} overflow-hidden`
@@ -148,6 +148,7 @@ const linkClasses = link.image || link.video
     class={linkClasses}
     target={link.newTab ? "_blank" : undefined}
     rel={link.newTab ? "noopener noreferrer" : undefined}
+    download={link.download ? "" : undefined}
   >
     {link.image && (
       <div class="mb-3 -mx-6 -mt-3 max-w-[calc(100%+3rem)]"
