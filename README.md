@@ -6,16 +6,12 @@ LinkTower is a portfolio-focused personal link hub built with Astro, forked from
 
 ## ✨ Features
 
-- **Rich Link Variants**: Multiple color themes including primary, secondary, tertiary, accent, neutral, and base
-- **Gradient Backgrounds**: All color variants support gradient versions for eye-catching link cards
-- **Video Support**: Embed looping videos (MP4/MOV) in custom links for portfolio showcases
-- **Action Buttons**: Add call-to-action buttons to blog posts (e.g., "View on GitHub", "Live Demo")
-- **External Links**: Mark links to open in new tabs with visual indicators
-- **File Downloads**: Support for downloadable assets with custom styling
-- **Optional Blog**: Full-featured blog with custom OpenGraph images per post
-- **Contact Form**: Integrated contact form using [Web3Forms](https://web3forms.com)
 - **Icon Support**: Hundreds of icons from Iconify plus custom local SVGs
+- **Video Support**: Embed looping videos (MP4) in custom links for portfolio showcases
+- **File Downloads**: Support for downloadable assets with custom styling
+- **Contact Form**: Integrated contact form using [Web3Forms](https://web3forms.com)
 - **Customizable Themes**: Premade themes for light and dark mode
+- **Optional Blog**: Full-featured blog with custom OpenGraph images per post
 - **RSS & Sitemap**: Automatic generation for SEO
 
 ## 🚀 Getting started
@@ -50,21 +46,7 @@ LinkTower supports six color variants, each with solid and gradient versions:
 - **base**: Default theme colors
 - **primary**: Dark blue accent
 - **secondary**: Peach/coral accent
-- **tertiary**: Dark green accent
-- **accent**: Light blue accent
 - **neutral**: Neutral gray tones
-
-#### Using Gradients
-
-Add `-gradient` suffix to any color variant:
-
-```json
-{
-  "color": "primary-gradient"
-}
-```
-
-Gradient links use smooth color transitions from light to dark (or dark to light in dark mode).
 
 ### Custom Links
 
@@ -104,7 +86,7 @@ Videos autoplay silently on loop (like animated GIFs). **Only MP4 format is supp
   "url": "https://example.com",
   "video": "/demo.mp4",
   "icon": "play",
-  "color": "tertiary-gradient"
+  "color": "neutral"
 }
 ```
 
@@ -117,7 +99,7 @@ Videos autoplay silently on loop (like animated GIFs). **Only MP4 format is supp
   "title": "External Resource",
   "url": "https://example.com",
   "newTab": true,
-  "color": "accent"
+  "color": "primary"
 }
 ```
 
@@ -130,7 +112,7 @@ Links with `newTab: true` display an external link icon instead of a chevron and
   "title": "Download Resume",
   "url": "/resume.pdf",
   "icon": "download",
-  "color": "neutral-gradient"
+  "color": "neutral"
 }
 ```
 
@@ -145,7 +127,7 @@ Icon links appear as circular buttons and support all color variants:
   "id": "unique-id",
   "icon": "github",
   "url": "https://github.com/username",
-  "color": "tertiary"
+  "color": "primary"
 }
 ```
 
