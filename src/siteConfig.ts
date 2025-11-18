@@ -35,6 +35,8 @@ interface CustomLink {
   url: string;
   image?: string;
   imageAlt?: string;
+  carouselImages?: string[];
+  carouselImageAlts?: string[];
   video?: string;
   color?: ColorVariant;
   newTab?: boolean;

@@ -136,11 +136,94 @@ const colors = isGradient
 // Determine the arrow icon based on download and newTab
 const arrowIcon = link.download ? "download" : (link.newTab ? "external-link" : "lucide:chevron-right");
 
-const linkClasses = link.image || link.video
+const linkClasses = link.image || link.video || link.carouselImages
   ? `flex flex-col rounded-3xl px-6 py-3 text-lg transition-colors ring-2 ${colors.bg} ${colors.text} ${colors.ring} ${colors.hoverBg} ${colors.hoverRing} overflow-hidden`
   : `flex items-center gap-2 rounded-3xl px-6 py-3 text-lg transition-colors ring-2 ${colors.bg} ${colors.text} ${colors.ring} ${colors.hoverBg} ${colors.hoverRing}`;
 
+// Generate a unique ID for this carousel
+const carouselId = `carousel-${link.id}`;
+
 ---
+
+<style>
+  .carousel-container {
+    position: relative;
+    user-select: none;
+  }
+
+  .carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .carousel-slide {
+    flex: 0 0 100%;
+    width: 100%;
+  }
+
+  .carousel-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    z-index: 10;
+  }
+
+  .carousel-nav-btn:hover {
+    background: rgba(0, 0, 0, 0.7);
+  }
+
+  .carousel-nav-btn.prev {
+    left: 0.5rem;
+  }
+
+  .carousel-nav-btn.next {
+    right: 0.5rem;
+  }
+
+  .carousel-container:hover .carousel-nav-btn {
+    opacity: 1;
+  }
+
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 0 0.25rem 0;
+  }
+
+  .carousel-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.3;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+  }
+
+  .carousel-dot:hover {
+    opacity: 0.6;
+    transform: scale(1.2);
+  }
+
+  .carousel-dot.active {
+    opacity: 1;
+  }
+</style>
 
 <li>
   <a
@@ -151,7 +234,143 @@ const linkClasses = link.image || link.video
     download={link.download ? "" : undefined}
     data-testid="custom-link"
   >
-    {link.image && (
+    {link.carouselImages && link.carouselImages.length > 0 ? (
+      <div class="mb-3 -mx-6 -mt-3 max-w-[calc(100%+3rem)] carousel-container" data-testid="carousel-container">
+        <div class="overflow-hidden">
+          <div class="carousel-track" id={`${carouselId}-track`} data-testid="carousel-track">
+            {link.carouselImages.map((img, index) => (
+              <div class="carousel-slide" data-testid="carousel-slide">
+                <img
+                  src={img}
+                  alt={link.carouselImageAlts?.[index] || link.title}
+                  class="w-full object-cover object-center aspect-[3/2]"
+                  data-carousel-image={index === 0 ? "first" : undefined}
+                  onload={index === 0 ? `
+                    const ratio = this.naturalWidth / this.naturalHeight;
+                    const track = document.getElementById('${carouselId}-track');
+                    if (track && ratio > 0) {
+                      track.style.aspectRatio = ratio.toString();
+                      const images = track.querySelectorAll('img');
+                      images.forEach(img => {
+                        img.classList.remove('aspect-[3/2]');
+                        img.style.aspectRatio = ratio.toString();
+                      });
+                    }
+                  ` : undefined}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+        <button
+          class="carousel-nav-btn prev"
+          aria-label="Previous image"
+          data-testid="carousel-prev"
+        >
+          ‹
+        </button>
+        <button
+          class="carousel-nav-btn next"
+          aria-label="Next image"
+          data-testid="carousel-next"
+        >
+          ›
+        </button>
+        <div class="carousel-dots" data-testid="carousel-dots">
+          {link.carouselImages.map((_, index) => (
+            <button
+              class={`carousel-dot ${index === 0 ? 'active' : ''}`}
+              aria-label={`Go to image ${index + 1}`}
+              data-index={index}
+              data-testid={`carousel-dot-${index}`}
+            />
+          ))}
+        </div>
+        <script define:vars={{ carouselId }}>
+          (function() {
+            const track = document.getElementById(`${carouselId}-track`);
+            const dots = track?.closest('.carousel-container')?.querySelectorAll('.carousel-dot');
+            const prevBtn = track?.closest('.carousel-container')?.querySelector('.carousel-nav-btn.prev');
+            const nextBtn = track?.closest('.carousel-container')?.querySelector('.carousel-nav-btn.next');
+            const link = track?.closest('a');
+
+            if (!track || !dots || !prevBtn || !nextBtn) return;
+
+            let currentIndex = 0;
+            const totalSlides = dots.length;
+            let autoPlayInterval;
+
+            function goToSlide(index) {
+              currentIndex = (index + totalSlides) % totalSlides;
+              track.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+              dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentIndex);
+              });
+            }
+
+            function nextSlide() {
+              goToSlide(currentIndex + 1);
+            }
+
+            function prevSlide() {
+              goToSlide(currentIndex - 1);
+            }
+
+            function startAutoPlay() {
+              stopAutoPlay();
+              autoPlayInterval = setInterval(nextSlide, 4000);
+            }
+
+            function stopAutoPlay() {
+              if (autoPlayInterval) {
+                clearInterval(autoPlayInterval);
+                autoPlayInterval = null;
+              }
+            }
+
+            // Event listeners for buttons
+            prevBtn.addEventListener('click', (e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              prevSlide();
+              stopAutoPlay();
+              setTimeout(startAutoPlay, 8000);
+            });
+
+            nextBtn.addEventListener('click', (e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              nextSlide();
+              stopAutoPlay();
+              setTimeout(startAutoPlay, 8000);
+            });
+
+            // Event listeners for dots
+            dots.forEach((dot, index) => {
+              dot.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                goToSlide(index);
+                stopAutoPlay();
+                setTimeout(startAutoPlay, 8000);
+              });
+            });
+
+            // Pause on hover
+            const container = track.closest('.carousel-container');
+            container?.addEventListener('mouseenter', stopAutoPlay);
+            container?.addEventListener('mouseleave', startAutoPlay);
+
+            // Start autoplay
+            startAutoPlay();
+
+            // Cleanup on page unload
+            window.addEventListener('beforeunload', stopAutoPlay);
+          })();
+        </script>
+      </div>
+    ) : link.image && (
       <div class="mb-3 -mx-6 -mt-3 max-w-[calc(100%+3rem)]"
       >
         <img

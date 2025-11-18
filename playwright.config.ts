@@ -24,11 +24,11 @@ export default defineConfig({
     // Build a dedicated test variant of the site that uses test config/content,
     // then serve it via preview for a stable, production-like environment.
     // We bind preview to port 4322 to avoid conflicts with any existing servers.
-    command: 'pnpm run build:test && pnpm run preview -- --port=4322',
+    command: 'pnpm run build:test && pnpm astro preview --port=4322',
     url: 'http://localhost:4322',
     // Always start a fresh preview server for tests so we don't accidentally
     // reuse a previous build that was created with different env/config.
     reuseExistingServer: false,
-    timeout: 120000,
+    timeout: 240000,
   },
 });
