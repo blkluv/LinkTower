@@ -278,18 +278,33 @@ const carouselId = `carousel-${link.id}`;
     ) : link.image && (
       <div class="mb-3 -mx-6 -mt-3 max-w-[calc(100%+3rem)]"
       >
-        <img
-          src={link.image}
-          alt={link.imageAlt || link.title}
-          class="w-full object-cover object-center aspect-[3/2]"
-          onload="
-            const ratio = this.naturalWidth / this.naturalHeight;
-            if (ratio > 3/2) {
-              this.classList.remove('aspect-[3/2]');
-              this.classList.add(`aspect-[${this.naturalWidth}/${this.naturalHeight}]`);
-            }
-          "
-        />
+        {link.imageDark ? (
+          <>
+            <img
+              src={link.image}
+              alt={link.imageAlt || link.title}
+              class="w-full object-cover object-center aspect-[3/2] dark:hidden"
+            />
+            <img
+              src={link.imageDark}
+              alt={link.imageAltDark || link.imageAlt || link.title}
+              class="w-full object-cover object-center aspect-[3/2] hidden dark:block"
+            />
+          </>
+        ) : (
+          <img
+            src={link.image}
+            alt={link.imageAlt || link.title}
+            class="w-full object-cover object-center aspect-[3/2]"
+            onload="
+              const ratio = this.naturalWidth / this.naturalHeight;
+              if (ratio > 3/2) {
+                this.classList.remove('aspect-[3/2]');
+                this.classList.add(`aspect-[${this.naturalWidth}/${this.naturalHeight}]`);
+              }
+            "
+          />
+        )}
       </div>
     )}
     {link.video && (

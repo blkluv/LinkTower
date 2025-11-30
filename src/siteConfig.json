@@ -55,6 +55,17 @@
       "color": "secondary"
     },
     {
+      "title": "Link with dark mode-aware image",
+      "description": "Image changes based on dark mode",
+      "url": "https://chronii.mitchellwallace.net",
+      "image": "/chronii-mockup-2.png",
+      "imageAlt": "Chronii app mockup (light)",
+      "imageDark": "/chronii-mockup-dark.png",
+      "imageAltDark": "Chronii app mockup (dark)",
+      "color": "base",
+      "newTab": true
+    },
+    {
       "title": "My Personal Website",
       "description": "Find my socials and posts",
       "url": "https://mitchellwallace.net",

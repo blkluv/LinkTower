@@ -33,6 +33,8 @@ interface CustomLink {
   url: string;
   image?: string;
   imageAlt?: string;
+  imageDark?: string;
+  imageAltDark?: string;
   carouselImages?: string[];
   carouselImageAlts?: string[];
   video?: string;
