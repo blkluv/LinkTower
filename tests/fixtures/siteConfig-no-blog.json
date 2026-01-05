@@ -1,7 +1,7 @@
 {
   "name": "Test Site",
   "bio": "Test Bio",
-  "profilePicture": "/profile-picture.png",
+  "profilePicture": "/profile-picture.jpg",
   "url": "https://test.example.com",
   "isBlogDisplayed": false,
   "blogHomePostLimit": 3,
