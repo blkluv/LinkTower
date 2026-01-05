@@ -9,7 +9,7 @@ export default defineConfig({
   redirects: {
     "/blog": "/",
   },
-  site: "https://linktower.mitchellwallace.net",
+  site: "https://whisk.atl5d.com",
   integrations: [
     tailwind(),
     sitemap(),

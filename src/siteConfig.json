@@ -1,30 +1,30 @@
 {
-  "name": "LinkTower",
-  "bio": "Links • Blog • Contact",
-  "profilePicture": "/profile-picture.png",
-  "url": "https://linktower.mitchellwallace.net",
+  "name": "Whisk",
+  "bio": "Cozy eatery offering breakfast and lunch eats, plus cocktails, wine and a relaxed vibe. 📍 3523 Camp Creek Pkwy, East Point, GA 30344",
+  "profilePicture": "/profile-picture.jpg",
+  "url": "https://whisk.atl5d.com",
   "isBlogDisplayed": true,
   "blogHomePostLimit": 3,
   "contactFormEnabled": true,
-  "web3FormsAccessKey": "ac59967a-318d-4a10-b81e-dbdb45e9847a",
-  "umamiWebsiteId": "b2d83dc6-ec1f-4c8e-841e-398b99f38a12",
+  "web3FormsAccessKey": "e84042ad-09cb-4c32-a433-9ec5589754f4",
+  "umamiWebsiteId": "dd667d9f-f9cd-4b59-8c17-c9681858bad7",
   "iconLinks": [
     {
       "id": "1728534577184",
-      "icon": "github",
-      "url": "https://github.com/mitchell-wallace",
+      "icon": "instagram",
+      "url": "https://www.instagram.com/whiskatlanta/#",
       "color": "base"
     },
     {
       "id": "1728534577186",
-      "icon": "linkedin",
-      "url": "https://www.linkedin.com/in/mitchell-wallace-dev/",
+      "icon": "tiktok",
+      "url": "https://www.tiktok.com/@whiskatlanta",
       "color": "base"
     },
     {
       "id": "1728534577188",
-      "icon": "mail",
-      "url": "mailto:mitchell.wallace@outlook.com.au",
+      "icon": "youtube",
+      "url": "https://www.youtube.com/@whiskatlanta",
       "color": "base"
     }
   ],
@@ -36,10 +36,10 @@
       "icon": "link",
       "color": "neutral",
       "carouselImages": [
-        "/quotd-example.png",
-        "/quotd-example-2.png",
-        "/quotd-example-3.png",
-        "/quotd-example-4.png"
+        "/quotd-whisk-1.png",
+        "/quotd-whisk-2.jpg",
+        "/quotd-whisk-3.jpg",
+        "/quotd-whisk-4.png"
       ],
       "carouselImageAlts": [
         "Example image 1",
@@ -49,42 +49,48 @@
       ]
     },
     {
-      "title": "Link with looping video",
-      "url": "https://github.com/mitchell-wallace",
-      "video": "hashi.mp4",
+      "title": "Steak & Shrimp Loaded Breakfast Potato",
+      "url": "https://www.tiktok.com/@whiskatlanta/video/7565105159735397687",
+      "video": "whisk-breakfast-steak-potato.MP4",
+      "color": "secondary"
+    },
+        {
+      "title": "#1 Camp Creek Brunch Spot",
+      "url": "https://www.tiktok.com/@whiskatlanta/video/7527681950883089677",
+      "video": "whisk-brunch-spot.MP4",
       "color": "secondary"
     },
     {
-      "title": "Link with dark mode-aware image",
-      "description": "Image changes based on dark mode",
-      "url": "https://chronii.mitchellwallace.net",
-      "image": "/chronii-mockup-2.png",
-      "imageAlt": "Chronii app mockup (light)",
-      "imageDark": "/chronii-mockup-dark.png",
-      "imageAltDark": "Chronii app mockup (dark)",
+      "title": "Whisk Atlanta",
+      "description": "Whisk Atlanta Website",
+      "url": "https://www.whiskatlanta.com/",
+      "image": "/whisk-mockup-dark.jpg",
+      "imageAlt": "Whisk Atlanta Camp Creek",
+      "imageDark": "/whisk-mockup-dark.jpg",
+      "imageAltDark": "Whisk Atlanta Camp Creek",
       "color": "base",
       "newTab": true
     },
     {
-      "title": "My Personal Website",
-      "description": "Find my socials and posts",
-      "url": "https://mitchellwallace.net",
+      "title": "Reserve",
+      "description": "Reserve your table at Whisk",
+      "url": "https://cal.com/atl5d/whisk",
       "newTab": true,
-      "icon": "megaphone",
+      "icon": "clock",
       "color": "base"
     },
     {
-      "title": "My Dev Portfolio",
-      "description": "Check out my work",
-      "url": "https://mitchellwallace.dev",
+      "title": "Whisk Discord Channel",
+      "description": "Customer CRM and community chat",
+      "url": "https://discord.com/channels/1244450286337003520/1457828909205684224",
       "newTab": true,
       "icon": "id-card",
       "color": "base"
     },
     {
-      "title": "Download LinkTower Logo",
-      "description": "Get the official LinkTower logo",
-      "url": "/profile-picture.png",
+      "title": "Download TikTok ReelView QR Code",
+      "description": "Get the official Whisk TikTok ReelView QR Code",
+      "url": "/tiktok-reelview.png",
       "icon": "image",
       "color": "primary",
       "download": true,

@@ -3,80 +3,143 @@
 @tailwind utilities;
 
 /*
-  brand colours:
-  Peach: oklch(0.8323 0.0903 49)
-  Dark blue: oklch(0.4856 0.0711 241.81)
-  Blue: oklch(0.5286 0.0843 198.11)
-
+  BILLION DOLLAR BRAND - "Hunter & Gold" Scheme
+  Deep Green: oklch(0.30 0.05 145) - The base luxury color
+  Muted Gold: oklch(0.85 0.14 85)  - The premium accent
+  Off-White:  oklch(0.98 0.01 100) - Clean text
 */
 
 @layer base {
   :root {
-    color-scheme: light dark;
-
-    /* Light theme colors */
-    --primary: oklch(0.4856 0.0711 241.81);
-    --primary-100: oklch(0.4856 0.0711 241.81);
-    --primary-200: oklch(0.5456 0.0751 242.81);
-    --primary-300: oklch(0.5941 0.0964 243.81);
-    --primary-content: oklch(0.8323 0.0903 49);
-
-    --secondary: oklch(0.8323 0.0903 49);
-    --secondary-100: oklch(0.8323 0.0903 49);
-    --secondary-200: oklch(0.7923 0.1013 47);
-    --secondary-300: oklch(0.7423 0.1123 45);
-    --secondary-content: oklch(0.4856 0.0711 241.81);
-
-    --neutral-100: oklch(0.38 0.02 237);
-    --neutral-200: oklch(0.42 0.03 237);
-    --neutral-300: oklch(0.46 0.04 237);
-    --neutral-content: oklch(0.95 0.015 237);
-
-    --base-100: oklch(1 0 0);
-    --base-200: oklch(0.96 0.01 237);
-    --base-300: oklch(0.86 0.02 237);
-    --base-content: oklch(0.2 0.02 237);
-
-    --bg-top: oklch(0.93 0.005 237);
-    --bg-bottom: oklch(0.91 0.015 237);
+    color-scheme: dark; /* Defaulting to dark because of the deep green background */
+    
+    /* BRAND COLORS */
+    /* Primary: Muted Gold (used for accents, prices, primary buttons) */
+    --primary: oklch(0.85 0.14 85);       
+    --primary-100: oklch(0.95 0.10 85);
+    --primary-200: oklch(0.85 0.14 85);
+    --primary-300: oklch(0.75 0.15 85);
+    --primary-content: oklch(0.25 0.05 145); /* Dark text on gold button */
+    
+    /* Secondary: Sage/Lighter Green (used for hover states, links) */
+    --secondary: oklch(0.55 0.08 145);
+    --secondary-100: oklch(0.65 0.08 145);
+    --secondary-200: oklch(0.55 0.08 145);
+    --secondary-300: oklch(0.45 0.08 145);
+    --secondary-content: oklch(0.98 0.01 100);
+    
+    /* Accent: Rich Clay/Terra Cotta (optional pop color if needed) */
+    --accent: oklch(0.60 0.18 30); 
+    --accent-content: oklch(0.98 0.01 100);
+    
+    /* Base/Backgrounds - The Deep Forest Look */
+    --base-100: oklch(0.30 0.05 145); /* Deep Hunter Green Background */
+    --base-200: oklch(0.25 0.05 145); /* Slightly darker for distinct sections */
+    --base-300: oklch(0.20 0.05 145); /* Deepest shadows */
+    --base-content: oklch(0.96 0.01 100); /* White Text */
+    
+    /* Neutrals */
+    --neutral-100: oklch(0.28 0.04 145);
+    --neutral-200: oklch(0.35 0.05 145);
+    --neutral-300: oklch(0.45 0.05 145);
+    --neutral-content: oklch(0.90 0.01 100);
+    
+    /* Gradient Background Variables */
+    --bg-top: oklch(0.32 0.05 145);
+    --bg-bottom: oklch(0.28 0.05 145);
   }
 
-  [data-theme="treelink-light"] {
-    color-scheme: light;
+  body {
+    font-family: theme('fontFamily.sans'), system-ui, -apple-system, sans-serif;
+    background: linear-gradient(to bottom, var(--bg-top), var(--bg-bottom));
+    color: var(--base-content);
+    min-height: 100vh;
   }
-
-  [data-theme="treelink-dark"] {
-    color-scheme: dark;
-
-    /* Dark theme colors */
-    --primary: oklch(0.4856 0.0711 241.81);
-    --primary-100: oklch(0.4856 0.0711 241.81);
-    --primary-200: oklch(0.5456 0.0751 242.81);
-    --primary-300: oklch(0.5941 0.0964 243.81);
-    --primary-content: oklch(0.8323 0.0903 49);
-
-    --secondary: oklch(0.8323 0.0903 49);
-    --secondary-100: oklch(0.8323 0.0903 49);
-    --secondary-200: oklch(0.7923 0.1013 47);
-    --secondary-300: oklch(0.7423 0.1123 45);
-    --secondary-content: oklch(0.4856 0.0711 241.81);
-
-    --neutral-100: oklch(0.91 0.01 237);
-    --neutral-200: oklch(0.84 0.015 237);
-    --neutral-300: oklch(0.79 0.018 237);
-    --neutral-content: oklch(0.33 0.03 237);
-
-    --base-100: oklch(0.3 0.02 237);
-    --base-200: oklch(0.36 0.02 237);
-    --base-300: oklch(0.41 0.03 237);
-    --base-content: oklch(0.93 0 237);
-
-    --bg-top: oklch(0.17 0.01 237);
-    --bg-bottom: oklch(0.22 0.012 237);
+  
+  h1, h2, h3, h4, h5, h6 {
+    letter-spacing: -0.02em; /* Tight tracking feels more modern/premium */
   }
 }
+
 @layer components {
-  .prose hr {
-    @apply my-14 border-t-2 border-base-content/15 pb-6;
+  /* High-End Button Styles 
+     Moves away from "clickable blocks" to "interactive elements"
+  */
+  .btn-primary {
+    background-color: transparent;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    padding: 0.75rem 2rem;
+    border-radius: 9999px; /* Pill shape is very trendy for luxury dining */
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-primary:hover {
+    background-color: var(--primary);
+    color: var(--primary-content); /* Switches to dark text on hover */
+    box-shadow: 0 0 15px color-mix(in srgb, var(--primary) 40%, transparent);
+    transform: translateY(-1px);
+  }
+  
+  .btn-secondary {
+    background-color: var(--secondary-200);
+    color: var(--secondary-content);
+    padding: 0.75rem 2rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  
+  .btn-secondary:hover {
+    background-color: var(--secondary-100);
+    transform: translateY(-1px);
+  }
+
+  /* Menu Card - The "Glass" Look 
+     Instead of a solid block, we use a slight transparency to let the 
+     rich green breathe through.
+  */
+  .menu-card {
+    background-color: color-mix(in srgb, var(--base-200) 60%, transparent);
+    backdrop-filter: blur(10px); /* Frosted glass effect */
+    border: 1px solid color-mix(in srgb, var(--neutral-300) 30%, transparent);
+    border-radius: 0.25rem; /* Sharper corners feel more "editorial" */
+    padding: 2rem;
+    transition: all 0.3s ease;
+  }
+  
+  .menu-card:hover {
+    border-color: var(--primary); /* Gold border on hover */
+    background-color: color-mix(in srgb, var(--base-200) 80%, transparent);
+  }
+  
+  /* Typography Overrides for the Menu */
+  .prose h2 {
+    color: var(--primary); /* Gold Headings */
+    font-size: 2rem;
+    font-weight: 300; /* Light weight looks more expensive */
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-bottom: 1px solid color-mix(in srgb, var(--primary) 30%, transparent);
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .prose h3 {
+    color: var(--base-content);
+    font-weight: 600;
+    font-size: 1.25rem;
+    margin-top: 2rem;
+  }
+  
+  .price-tag {
+    color: var(--primary);
+    font-family: monospace; /* Adds a technical/precise culinary feel */
+    font-weight: 700;
+    font-size: 1.1rem;
   }
 }
